@@ -1,0 +1,21 @@
+## To Do: ##
+
+Determine whether a puzzle has a unique solution in solveSudoku, and be able
+to require uniqueness in generateSudoku.
+
+playSudoku should allow the user to write "notes" on the cells.
+
+Scores and ratings.
+
+Make solveSudoku smarter, require less guessing.
+
+Fix "Broken X11 window" warnings after playSudoku(display="tk") on Linux.
+Fix Error in structure(...) after playSudoku(display="tk") on Windows.
+
+Generalize to NxN, where N=9, 16, etc., and pass "map" around.
+
+Replace print statement in solveSudoku with printSudoku().
+
+Document color scheme, make it selectable (eg for colorblind people).
+
+Make a "sudoku" class.
