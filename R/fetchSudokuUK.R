@@ -21,5 +21,5 @@ fetchSudokuUK <- function(day){
   vals <- substr(tmp2,tmp3,tmp3)
   vals <- as.numeric( sub('[^1-9]','0',vals) )
 
-  matrix(vals,9,9,byrow=T)
+  matrix(vals,9,9,byrow=TRUE)
 }

@@ -5,7 +5,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
                         hscale=1.25, vscale=1.25, ...) {
 
   dsp <- substring(match.arg(display), 1,1)
-  if (dsp=="g") dsp <- switch(getOption("device"), windows="w", "t")
+  if (dsp=="g") dsp <- switch(.Platform$OS.type, windows="w", "t")
   if (dsp=="t" && !require(tkrplot)) stop("'tkrplot' package needed\n")
   
   if (identical(z,0)) {z <- matrix(0, 9,9); solve <- FALSE}
@@ -102,7 +102,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
   }    
 
   kb("?")
-  if (solve && is.null(zz)) {type("Puzzle not solvable.\n"); solve <- F}
+  if (solve && is.null(zz)) {type("Puzzle not solvable.\n"); solve <- FALSE}
   switch(dsp, w=getGraphicsEvent("Ready!", onMouseMove=mm.w, onKeybd=kb),
               t={tkbind(img,'<Motion>',mm.t); tkbind(tt,'<Key>',kb);
                  tkwait.window(tt)})

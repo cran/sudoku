@@ -1,6 +1,6 @@
 Package: sudoku
-Version: 2.0
-Date: 2006-01-30
+Version: 2.1
+Date: 2008-11-11
 Title: Sudoku Puzzle Generator and Solver
 Author: David Brahm <brahm@alum.mit.edu>
     and Greg Snow <Greg.Snow@intermountainmail.org>,
@@ -11,4 +11,4 @@ Suggests: tkrplot
 Description: Generates, plays, and solves Sudoku puzzles.
   The GUI playSudoku() needs package "tkrplot" if you are not on Windows.
 License: GPL
-Packaged: Sun Jan 29 22:00:11 2006; a215020
+Packaged: Tue Nov 11 10:48:15 2008; a215020
