@@ -11,7 +11,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
   if (identical(z,0)) {z <- matrix(0, 9,9); solve <- FALSE}
   if (is.null(z))      z <- generateSudoku(...)
   if (length(z)==1)    z <- readSudoku(z)
-  if (solve) {cat("Solving..."); zz <- solveSudoku(z, p=FALSE); cat("done!\n")}
+  if (solve) {cat("Solving..."); zz <- solveSudoku(z, print.it=FALSE); cat("done!\n")}
   cols <- ifelse(z, "blue","black")
 
   hst <- list(z)                   # Keep a history of z's to length "hist.len"
