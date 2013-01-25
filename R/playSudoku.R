@@ -53,7 +53,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
   showz()
   
   cc <- function(x, y) {           # Convert mouse position to cell coordinates
-    if (dsp=="t") {x <- (as.real(x)-1)/iw;  y <- 1 - (as.real(y)-1)/ih}
+    if (dsp=="t") {x <- (as.double(x)-1)/iw;  y <- 1 - (as.double(y)-1)/ih}
     px <- (x-cplt[1])/(cplt[2]-cplt[1])
     py <- (y-cplt[3])/(cplt[4]-cplt[3])
     ux <- px*(cusr[2]-cusr[1])+cusr[1]
@@ -88,7 +88,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
     if (key %in% c("c","s","a") && !solve)
       {type("Solution not available\n"); return()}
     if (key %in% c(0:9,"c","s","a")) ah(z)
-    if (key %in% 0:9) {z[i,j] <<- as.real(key);  cols[i,j] <<- "black"}
+    if (key %in% 0:9) {z[i,j] <<- as.double(key);  cols[i,j] <<- "black"}
     if (key=="?") type(help.txt)
     if (key=="h") type(hintSudoku(z, i,j))
     if (key=="c") {cols[z != 0 & z != zz] <<- "red"
