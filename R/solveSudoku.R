@@ -47,7 +47,7 @@ solveSudoku <- function(z, verbose=FALSE, map=c(1:9,letters), level=0,
     }
     if (ngot==oldngot) {                               # Failed.  Take a guess!
       poss <- rowSums(is.na(a), ,2)                # Number of possible guesses
-      if (!any(poss)) {if (verbose) cat("No possibilities left\n"); return()}
+      if (!any(poss > 0)) {if (verbose) cat("No possibilities left\n"); return()}
       ij <- which(poss == min(setdiff(poss,0)), TRUE)[1, ]
       k <- which(is.na(a[ij[1], ij[2], ]))[1]              # 1st possible guess
       if (verbose) cat("Guessing:", ij[1], ij[2], "=", k, "\n")
