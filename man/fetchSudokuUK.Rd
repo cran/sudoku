@@ -1,8 +1,8 @@
 \name{fetchSudokuUK}
 \alias{fetchSudokuUK}
-\title{Fetch the daily sudoku puzzle from http://www.sudoku.org.uk/}
+\title{Fetch the daily sudoku puzzle from https://www.sudoku.org.uk/}
 \description{Fetches the daily sudoku puzzle from
-  http://www.sudoku.org.uk/ or one of their archive from the previous 31
+  https://www.sudoku.org.uk/ or one of their archive from the previous 31
   days.}
 \usage{
   fetchSudokuUK(day)
@@ -16,7 +16,7 @@
   A 9x9 matrix representing a sudoku puzzle (blank squares have value
   0).
 }
-\references{\url{http://www.sudoku.org.uk/}}
+\references{\url{https://www.sudoku.org.uk/}}
 \author{Greg Snow \email{greg.snow@intermountainmail.org}}
 \note{See the website for copyright information.  Don't submit your
   solution for the prize contest if you used \code{solveSudoku} or

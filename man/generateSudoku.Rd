@@ -15,7 +15,7 @@
   around some rows and columns, then blank out some cells.
 }
 \value{A matrix, representing a 9x9 Sudoku grid.}
-\references{\url{http://sudoku.com/}}
+\references{\url{https://sudoku.com/}}
 \author{Curt Seeliger <\email{Seeliger.Curt@epamail.epa.gov}>,
         Henrik Bengtsson <\email{hb@maths.lth.se}>,
     and David Brahm <\email{brahm@alum.mit.edu}>}

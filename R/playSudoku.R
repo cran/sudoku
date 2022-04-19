@@ -6,7 +6,8 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
 
   dsp <- substring(match.arg(display), 1,1)
   if (dsp=="g") dsp <- switch(.Platform$OS.type, windows="w", "t")
-  if (dsp=="t" && !require(tkrplot)) stop("'tkrplot' package needed\n")
+  if (dsp=="t" && !requireNamespace("tkrplot")) stop("'tkrplot' package needed\n")
+  if (dsp=="t" && !requireNamespace("tcltk"))   stop(  "'tcltk' package needed\n")
   
   if (identical(z,0)) {z <- matrix(0, 9,9); solve <- FALSE}
   if (is.null(z))      z <- generateSudoku(...)
@@ -35,21 +36,21 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
   }
 
   if (dsp=="t") {
-    tt <- tktoplevel()
-    tkwm.title(tt,"Sudoku")
-    img <- tkrplot(tt, replot, hscale=hscale, vscale=vscale)
-    txt <- tktext(tt, bg="white", font="courier")
-    scr <- tkscrollbar(tt, repeatinterval=5,
-                       command=function(...)tkyview(txt,...))
-    tkconfigure(txt, yscrollcommand=function(...)tkset(scr,...))
-    tkpack(img, side='top')
-    tkpack(txt, side="left", fill="both", expand=TRUE)
-    tkpack(scr, side="right", fill="y")
-    iw <- as.numeric(tcl('image','width', tkcget(img,'-image')))
-    ih <- as.numeric(tcl('image','height',tkcget(img,'-image')))
+    tt <- tcltk::tktoplevel()
+    tcltk::tkwm.title(tt,"Sudoku")
+    img <- tkrplot::tkrplot(tt, replot, hscale=hscale, vscale=vscale)
+    txt <- tcltk::tktext(tt, bg="white", font="courier")
+    scr <- tcltk::tkscrollbar(tt, repeatinterval=5,
+                       command=function(...)tcltk::tkyview(txt,...))
+    tcltk::tkconfigure(txt, yscrollcommand=function(...)tcltk::tkset(scr,...))
+    tcltk::tkpack(img, side='top')
+    tcltk::tkpack(txt, side="left", fill="both", expand=TRUE)
+    tcltk::tkpack(scr, side="right", fill="y")
+    iw <- as.numeric(tcltk::tcl('image','width', tcltk::tkcget(img,'-image')))
+    ih <- as.numeric(tcltk::tcl('image','height',tcltk::tkcget(img,'-image')))
   }
 
-  showz <- function() switch(dsp, w=replot(), t=tkrreplot(img))
+  showz <- function() switch(dsp, w=replot(), t=tkrplot::tkrreplot(img))
   showz()
   
   cc <- function(x, y) {           # Convert mouse position to cell coordinates
@@ -73,7 +74,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
                     "a     -- show all (solve the puzzle)",
                     "\n", sep="\n")
   type <- function(s) switch(dsp, w=cat(s),
-                                  t={tkinsert(txt,'end',s); tksee(txt,'end')})
+                                  t={tcltk::tkinsert(txt,'end',s); tcltk::tksee(txt,'end')})
   ij <- c(5,5)                                                # Initial "point"
   mm.w <- function(buttons, x, y) {ij <<- cc(x,y); return()}
   mm.t <- function(x, y)          {ij <<- cc(x,y); return()}
@@ -82,7 +83,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
     i <- ij[1];  j <- ij[2]
     z[cols=="red"] <<- 0;  cols[cols=="red"] <<- "black"
     key <- switch(A, " "="0", "/"="?", tolower(A))
-    if (key=="q") switch(dsp, t=tkdestroy(tt), w=return(1))
+    if (key=="q") switch(dsp, t=tcltk::tkdestroy(tt), w=return(1))
     if (key %in% c(0:9,"h","s") && (i < 1 || i > 9 || j < 1 || j > 9))
       {type("Must be over puzzle cell\n"); return()}
     if (key %in% c("c","s","a") && !solve)
@@ -104,7 +105,7 @@ playSudoku <- function(z=NULL, hist.len=100, solve=TRUE,
   kb("?")
   if (solve && is.null(zz)) {type("Puzzle not solvable.\n"); solve <- FALSE}
   switch(dsp, w=getGraphicsEvent("Ready!", onMouseMove=mm.w, onKeybd=kb),
-              t={tkbind(img,'<Motion>',mm.t); tkbind(tt,'<Key>',kb);
-                 tkwait.window(tt)})
+              t={tcltk::tkbind(img,'<Motion>',mm.t); tcltk::tkbind(tt,'<Key>',kb);
+                 tcltk::tkwait.window(tt)})
   return(invisible(z))
 }

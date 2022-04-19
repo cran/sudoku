@@ -33,7 +33,7 @@ uniqueness.
 }
 \value{Invisibly returns the solved (numerical) matrix, and prints the
   character version.}
-\references{Example "puz1" comes from \url{http://sudoku.com/}.}
+\references{Example "puz1" comes from \url{https://sudoku.com/}.}
 \author{David E. Brahm <\email{brahm@alum.mit.edu}>}
 \examples{
 \dontrun{

@@ -6,3 +6,5 @@ export(fetchSudokuUK,
        readSudoku,
        solveSudoku,
        writeSudoku)
+importFrom("grDevices", "getGraphicsEvent")
+importFrom("graphics",  "plot","par","segments","text")

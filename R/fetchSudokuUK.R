@@ -1,8 +1,8 @@
 fetchSudokuUK <- function(day){
   if(missing(day)){
-    th <- url('http://www.sudoku.org.uk/DailySudoku.asp')
+    th <- url('https://www.sudoku.org.uk/DailySudoku.asp')
   } else {
-    th <- url(paste('http://www.sudoku.org.uk/DailySudoku.asp?day=',day,sep=''))
+    th <- url(paste('https://www.sudoku.org.uk/DailySudoku.asp?day=',day,sep=''))
   }
 
   
